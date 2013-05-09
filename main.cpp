@@ -7,25 +7,30 @@ int main()
 {
     cout<<"Creating roulette wheel"<<endl;
     RouletteWheel wheel;
-    cout<<"Spinning wheel 100 times:"<<endl;
-    for(int a=1; a<=100; a++)
-    {
+    int money = 100;
+    int bet = 1;
+    cout<<"Start money: "<<money<<endl;
+    for(int a=0; a<1000 || money < bet; a++){
+        //subtract the bet.
+        money -= bet;
+        cout<<"Spin #"<<a+1<<" bet: "<<bet<<endl;
+        //spin the wheel.
         RouletteResult spin = wheel.spin();
-        cout<<"Spin #"<<a<<": ";
-        cout<<"Number: ";
-        if(spin.number == -1){
-            cout<<"00";
+        //did we win?
+        if(spin.color == RED){
+            //we won.
+            money += bet * 2;
+            bet = 1;
+            cout<<"\tWin! Money: "<<money<<endl;
         }
         else{
-            cout<<spin.number;
+            //we lost.
+            bet *= 2;
+            cout<<"\tLose! Money: "<<money<<endl;
         }
-        if(spin.color == RED){
-            cout<<" Color: Red";
-        }
-        if(spin.color == BLACK){
-            cout<<" Color: Black";
-        }
-        cout<<endl;
     }
+    cout<<"End money: "<<money;
+
+
     return 0;
 }
