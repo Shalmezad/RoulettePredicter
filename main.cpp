@@ -10,7 +10,7 @@ int main()
     int money = 100;
     int bet = 1;
     cout<<"Start money: "<<money<<endl;
-    for(int a=0; a<1000 || money < bet; a++){
+    for(int a=0; a<1000 && money > bet; a++){
         //subtract the bet.
         money -= bet;
         cout<<"Spin #"<<a+1<<" bet: "<<bet<<endl;
